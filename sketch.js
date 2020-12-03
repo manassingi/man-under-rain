@@ -16,6 +16,14 @@ ti1=loadImage("thunderbolt/1.png")
 ti2=loadImage("thunderbolt/2.png")
 ti3=loadImage("thunderbolt/3.png")
 ti4=loadImage("thunderbolt/4.png")
+umbrellaimg=loadAnimation("Walking Frame/walking_1.png",
+"Walking Frame/walking_2.png",
+"Walking Frame/walking_3.png",
+"Walking Frame/walking_4.png",
+"Walking Frame/walking_5.png",
+"Walking Frame/walking_6.png",
+"Walking Frame/walking_7.png",
+"Walking Frame/walking_8.png")
 }
  function setup(){
     createCanvas(500, 800);
@@ -23,7 +31,11 @@ ti4=loadImage("thunderbolt/4.png")
 	engine = Engine.create();
 	world = engine.world;
     
-    umbrella=new Umbrella(200,700,100,100)
+    umbrella=createSprite(200,620,100,100)
+    umbrella.addAnimation("umbrellaimg",umbrellaimg)
+    umbrella.scale=0.5
+    umbrella = Bodies.circle(200, 510, 60 , {isStatic:true,restitution:1} );
+	World.add(world, umbrella);
    for(var i=0;i<maxdrops;i++){
 
     maxrain.push(new Drops(random(0,400),random(0,400)))
@@ -47,7 +59,7 @@ function draw(){
         maxrain[i].show()
         maxrain[i].rain()
     }
-    umbrella.display()
+   // umbrella.display()
     
     
 }  
